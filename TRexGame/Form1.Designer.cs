@@ -28,14 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            this.components = new System.ComponentModel.Container();
             this.floor = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.trex = new System.Windows.Forms.PictureBox();
             this.obstacle2 = new System.Windows.Forms.PictureBox();
             this.obstacle1 = new System.Windows.Forms.PictureBox();
             this.scoreText = new System.Windows.Forms.Label();
+            this.gameTimer = new System.Windows.Forms.Timer(this.components);
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.floor)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trex)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.obstacle2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.obstacle1)).BeginInit();
             this.SuspendLayout();
@@ -50,20 +52,20 @@
             this.floor.TabStop = false;
             this.floor.Click += new System.EventHandler(this.floor_Click);
             // 
-            // pictureBox1
+            // trex
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(131, 385);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(44, 60);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.trex.Image = global::TRexGame.Properties.Resources.running;
+            this.trex.Location = new System.Drawing.Point(131, 390);
+            this.trex.Name = "trex";
+            this.trex.Size = new System.Drawing.Size(44, 60);
+            this.trex.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.trex.TabIndex = 1;
+            this.trex.TabStop = false;
+            this.trex.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // obstacle2
             // 
-            this.obstacle2.Image = ((System.Drawing.Image)(resources.GetObject("obstacle2.Image")));
+            this.obstacle2.Image = global::TRexGame.Properties.Resources.obstacle_2;
             this.obstacle2.Location = new System.Drawing.Point(534, 400);
             this.obstacle2.Name = "obstacle2";
             this.obstacle2.Size = new System.Drawing.Size(50, 50);
@@ -75,7 +77,7 @@
             // 
             // obstacle1
             // 
-            this.obstacle1.Image = ((System.Drawing.Image)(resources.GetObject("obstacle1.Image")));
+            this.obstacle1.Image = global::TRexGame.Properties.Resources.obstacle_1;
             this.obstacle1.Location = new System.Drawing.Point(371, 405);
             this.obstacle1.Name = "obstacle1";
             this.obstacle1.Size = new System.Drawing.Size(23, 46);
@@ -96,6 +98,12 @@
             this.scoreText.Text = "Score - 0";
             this.scoreText.Click += new System.EventHandler(this.scoreText_Click);
             // 
+            // gameTimer
+            // 
+            this.gameTimer.Enabled = true;
+            this.gameTimer.Interval = 20;
+            this.gameTimer.Tick += new System.EventHandler(this.gameEvent);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -104,12 +112,14 @@
             this.Controls.Add(this.scoreText);
             this.Controls.Add(this.obstacle1);
             this.Controls.Add(this.obstacle2);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.trex);
             this.Controls.Add(this.floor);
             this.Name = "Form1";
             this.Text = "T Rex Endless Runner";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.keyIsDown);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.keyIsUp);
             ((System.ComponentModel.ISupportInitialize)(this.floor)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trex)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.obstacle2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.obstacle1)).EndInit();
             this.ResumeLayout(false);
@@ -120,10 +130,12 @@
         #endregion
 
         private System.Windows.Forms.PictureBox floor;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox trex;
         private System.Windows.Forms.PictureBox obstacle2;
         private System.Windows.Forms.PictureBox obstacle1;
         private System.Windows.Forms.Label scoreText;
+        private System.Windows.Forms.Timer gameTimer;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 
